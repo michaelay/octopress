@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Michaelay blog]]></title>
+  <link href="http://michaelay.herokuapp.com/atom.xml" rel="self"/>
+  <link href="http://michaelay.herokuapp.com/"/>
+  <updated>2011-11-16T12:30:15+08:00</updated>
+  <id>http://michaelay.herokuapp.com/</id>
+  <author>
+    <name><![CDATA[Michael Au-Yeung]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript private variable through closure]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/16/javascript-private-variable-through-closure/"/>
+    <updated>2011-11-16T12:11:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/16/javascript-private-variable-through-closure</id>
+    <content type="html"><![CDATA[<p>Defining Javascript class private instance variable
+Example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">MyClass</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// constructor</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">getA</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">MyClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myFunc</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">getA</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">;</span> <span class="c1">// do something with a </span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript instance method this variable]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/16/javascript-instance-method-this-variable/"/>
+    <updated>2011-11-16T12:05:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/16/javascript-instance-method-this-variable</id>
+    <content type="html"><![CDATA[<p>In Javascript class instance method, you must use the <em>this</em> variable to access instance variables.
+For instance:</p>
+
+<figure class='code'><figcaption><span>Javascript version</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">foo</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>as oppose to in C++:</p>
+
+<figure class='code'><figcaption><span>C++ version</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">return</span> <span class="n">foo</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One way to get around with using this for every instance variable is as follow:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">MyClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myFunc</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">with</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">foo</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript function properties]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/16/javascript-function-properties/"/>
+    <updated>2011-11-16T11:28:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/16/javascript-function-properties</id>
+    <content type="html"><![CDATA[<p>
+Sometimes you need variable in a function to persist across invocations. 
+You can always define global variable to do that. However, that clusters up the namespace. 
+</p>
+
+
+<p>
+A better way to do that is to define a function property accessible only to that particular function.
+Example:  
+</p>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">someFunction</span><span class="p">.</span><span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">someFunction</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">someFunction</span><span class="p">.</span><span class="nx">counter</span><span class="p">;</span>
+</span><span class='line'>  <span class="c1">// the counter is like a static function variable in C</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript function optional arguments]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/16/javascript-function-optional-arguments/"/>
+    <updated>2011-11-16T11:21:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/16/javascript-function-optional-arguments</id>
+    <content type="html"><![CDATA[<p>Simple example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="cm">/* optional */</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span> <span class="o">||</span> <span class="p">[];</span> <span class="c1">// returns b if b is defined and non-null, </span>
+</span><span class='line'>               <span class="c1">// even if b is empty.</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Restarting Pow]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/14/restarting/"/>
+    <updated>2011-11-14T16:31:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/14/restarting</id>
+    <content type="html"><![CDATA[<p>
+Pow is a zero configuration web server for ruby on rails development. 
+You can download it from <a href="pow.cx">pow.cx</a>.
+</p>
+
+
+<p>
+While it&#8217;s easy to install, sometimes you will need to restart it to keep things working.
+</p>
+
+
+<p>
+The easiest way is to do this under the rails app folder: 
+</p>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>~ michael<span class="nv">$ </span>touch tmp restart.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+The command restart the server. 
+What if the pow itself does not respond at all and touching the restart.txt does not work? 
+</p>
+
+
+<p>
+You can restart the service as follow: 
+</p>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>~ michael<span class="nv">$ </span>launchctl unload -Fw ~/Library/LaunchAgents/cx.pow.powd.plist
+</span><span class='line'>~ michael<span class="nv">$ </span>launchctl load -Fw ~/Library/LaunchAgents/cx.pow.powd.plist
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord - use include to optimize SQL query performance]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/14/activerecord-use-include-to-optimize-sql-query-performance/"/>
+    <updated>2011-11-14T15:14:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/14/activerecord-use-include-to-optimize-sql-query-performance</id>
+    <content type="html"><![CDATA[<p>
+Consider you have a model Post and a mode Comment, where a Post has multiple Comments. 
+You DB has 10 Posts and 2000 Comments. 
+Now you want to get the all Posts and all Comments. How many SQL is executed if you do the following?
+</p>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">posts</span> <span class="o">=</span> <span class="no">Post</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'><span class="n">posts</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">p</span><span class="o">.</span><span class="n">comments</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+Rails execute 2010 SQL query for you. The code is easy to write, but not so fun to run on your webserver. 
+Rails gets the id of the Post objects and use them in 2000 seperate SQL query to get their Comments. 
+What about getting all the Comments all together when fetching the Post objects? 
+The <em>include</em> method does exactly that. 
+It tells Rails to run one additional SQL query to fetch all the Comments object after the SQL fetch a Post object. 
+The code is as follow: 
+</p>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="ss">:include</span> <span class="o">=&gt;</span> <span class="ss">:comments</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+And this piece of code runs 20 SQL query instead of 2010 in the previous version. 
+Yet another nice little thing to distinguish between software engineers and programmers.
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Test fixtures tricks]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/14/test-fixtures-tricks/"/>
+    <updated>2011-11-14T15:03:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/14/test-fixtures-tricks</id>
+    <content type="html"><![CDATA[<p>
+Often we have model classes using serialized data fields. 
+This is how I write the YML fixture test data:
+</p>
+
+
+<figure class='code'><figcaption><span>Test fixture YML example for serialized array, serialized hash, and datetime</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">one</span><span class="p">:</span>
+</span><span class='line'>  <span class="nb">id</span><span class="p">:</span> <span class="mi">100</span>
+</span><span class='line'>  <span class="n">some_hash_serialized</span><span class="p">:</span> <span class="o">&lt;</span><span class="sx">%= { :profile_image_url =</span><span class="o">&gt;</span> <span class="s1">&#39;http://....png&#39;</span> <span class="p">}</span><span class="o">.</span><span class="n">to_yaml</span><span class="o">.</span><span class="n">inspect</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">  some_array_serialized: &lt;%= [ &#39;hello&#39;, &#39;world&#39; ].to_yaml.inspect %&gt;</span>
+</span><span class='line'>  <span class="n">some_datetime</span><span class="p">:</span> <span class="o">&lt;</span><span class="sx">%= first_occurred_at: &lt;%=</span> <span class="mi">10</span><span class="o">.</span><span class="n">days</span><span class="o">.</span><span class="n">ago</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="ss">:db</span><span class="p">)</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby on Rails respond_to and HTTP Accept header]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/10/rails-respond-to-and-http-accept-header/"/>
+    <updated>2011-11-10T14:22:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/10/rails-respond-to-and-http-accept-header</id>
+    <content type="html"><![CDATA[<p>
+Rails has an API respond_to for determine the response body format. 
+According to <a href="http://api.rubyonrails.org/">api.rubyonrails.org</a>, &#8220;(Rails determines the desired response format from the HTTP Accept header submitted by the client.)&#8221;
+</p>
+
+
+<p>
+However, browsers seem to have different strategy on writing the HTTP Accept header, (<a href="http://www.gethifi.com/blog/browser-rest-http-accept-headers">http://www.gethifi.com/blog/browser-rest-http-accept-headers</a>), would that be a problem? 
+</p>
+
+
+<p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RESTful API]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/10/restful-api/"/>
+    <updated>2011-11-10T13:13:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/10/restful-api</id>
+    <content type="html"><![CDATA[<h1>Representational state transfer</h1>
+
+
+<ul>
+  <li>transfer of representations of resources</li>
+  <li>HTTP is accidentally RESTful</li>
+  <li>use pre-existing, well-defined interface, minimize the addition of new appplication-specific features</li>
+  <li>stateless - server stores no client context. server can be stateful</li>
+  <li>cacheable</li>
+</ul>
+
+
+
+
+<h2>Uniform interface</h2>
+
+
+<ul>
+  <li>identification of resources</li>
+  <li>manipulation of resources through these representations</li>
+  <li>self-descriptive messages, eg. tells how to parse using MIME</li>
+  <li>hypermedia as the enginer of application state</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Initial commit: Welcome]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/10/initial-commit-welcome/"/>
+    <updated>2011-11-10T12:54:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/10/initial-commit-welcome</id>
+    <content type="html"><![CDATA[<p><a href="http://octopress.org/docs/blogging/">http://octopress.org/docs/blogging/</a></p>
+
+<figure class='code'><figcaption><span>Useful commands</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_post<span class="o">[</span><span class="s2">&quot;title&quot;</span><span class="o">]</span>
+</span><span class='line'>rake new_page<span class="o">[</span><span class="s2">&quot;title&quot;</span><span class="o">]</span>
+</span><span class='line'>rake new_page<span class="o">[</span><span class="s2">&quot;title/page.html&quot;</span><span class="o">]</span>
+</span><span class='line'>rake generate
+</span><span class='line'>rake watch
+</span><span class='line'>rake preview
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+</feed>

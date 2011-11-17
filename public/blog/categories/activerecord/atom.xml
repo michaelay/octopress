@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ActiveRecord | Michaelay blog]]></title>
+  <link href="http://michaelay.herokuapp.com/blog/categories/activerecord/atom.xml" rel="self"/>
+  <link href="http://michaelay.herokuapp.com/"/>
+  <updated>2011-11-16T12:30:15+08:00</updated>
+  <id>http://michaelay.herokuapp.com/</id>
+  <author>
+    <name><![CDATA[Michael Au-Yeung]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord - use include to optimize SQL query performance]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/14/activerecord-use-include-to-optimize-sql-query-performance/"/>
+    <updated>2011-11-14T15:14:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/14/activerecord-use-include-to-optimize-sql-query-performance</id>
+    <content type="html"><![CDATA[<p>
+Consider you have a model Post and a mode Comment, where a Post has multiple Comments. 
+You DB has 10 Posts and 2000 Comments. 
+Now you want to get the all Posts and all Comments. How many SQL is executed if you do the following?
+</p>
+
+
+<p><code>ruby
+posts = Post.all
+posts.each do |p|
+  p.comments   
+end
+</code></p>
+
+<p>
+Rails execute 2010 SQL query for you. The code is easy to write, but not so fun to run on your webserver. 
+Rails gets the id of the Post objects and use them in 2000 seperate SQL query to get their Comments. 
+What about getting all the Comments all together when fetching the Post objects? 
+The <em>include</em> method does exactly that. 
+It tells Rails to run one additional SQL query to fetch all the Comments object after the SQL fetch a Post object. 
+The code is as follow: 
+</p>
+
+
+<p><code>ruby
+Post.all(:include =&gt; :comments)
+</code></p>
+
+<p>
+And this piece of code runs 20 SQL query instead of 2010 in the previous version. 
+Yet another nice little thing to distinguish between software engineers and programmers.
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

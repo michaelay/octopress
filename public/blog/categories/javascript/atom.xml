@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Javascript | Michaelay blog]]></title>
+  <link href="http://michaelay.herokuapp.com/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://michaelay.herokuapp.com/"/>
+  <updated>2011-11-16T12:30:15+08:00</updated>
+  <id>http://michaelay.herokuapp.com/</id>
+  <author>
+    <name><![CDATA[Michael Au-Yeung]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript private variable through closure]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/16/javascript-private-variable-through-closure/"/>
+    <updated>2011-11-16T12:11:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/16/javascript-private-variable-through-closure</id>
+    <content type="html"><![CDATA[<p>Defining Javascript class private instance variable
+Example:
+``` javascript
+function MyClass(a) { // constructor
+  this.getA = function() { return a; }
+}</p>
+
+<p>MyClass.prototype.myFunc = function() {
+  return this.getA() + 1000; // do something with a
+}<br/>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript instance method this variable]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/16/javascript-instance-method-this-variable/"/>
+    <updated>2011-11-16T12:05:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/16/javascript-instance-method-this-variable</id>
+    <content type="html"><![CDATA[<p>In Javascript class instance method, you must use the <em>this</em> variable to access instance variables.
+For instance:
+<code>javascript Javascript version
+return this.foo;
+</code>
+as oppose to in C++:
+<code>c++ C++ version
+return foo;
+</code>
+One way to get around with using this for every instance variable is as follow:
+``` javascript
+MyClass.prototype.myFunc = function() {
+  with(this) {</p>
+
+<pre><code>return foo;
+</code></pre>
+
+<p>  }
+}
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript function properties]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/16/javascript-function-properties/"/>
+    <updated>2011-11-16T11:28:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/16/javascript-function-properties</id>
+    <content type="html"><![CDATA[<p>
+Sometimes you need variable in a function to persist across invocations. 
+You can always define global variable to do that. However, that clusters up the namespace. 
+</p>
+
+
+<p>
+A better way to do that is to define a function property accessible only to that particular function.
+Example:  
+</p>
+
+
+<p>``` javascript
+someFunction.counter = 0;</p>
+
+<p>function someFunction() {
+  return someFunction.counter;
+  // the counter is like a static function variable in C
+}
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript function optional arguments]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2011/11/16/javascript-function-optional-arguments/"/>
+    <updated>2011-11-16T11:21:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2011/11/16/javascript-function-optional-arguments</id>
+    <content type="html"><![CDATA[<p>Simple example:
+``` javascript
+function foo(a, /<em> optional </em>/ b) {
+  b = b || []; // returns b if b is defined and non-null,</p>
+
+<pre><code>           // even if b is empty.
+</code></pre>
+
+<p>}
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
