@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: RubyOnRails,SSL | Michaelay blog]]></title>
+  <link href="http://michaelay.herokuapp.com/blog/categories/rubyonrails-ssl/atom.xml" rel="self"/>
+  <link href="http://michaelay.herokuapp.com/"/>
+  <updated>2012-01-03T15:47:59+08:00</updated>
+  <id>http://michaelay.herokuapp.com/</id>
+  <author>
+    <name><![CDATA[Michael Au-Yeung]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails force SSL]]></title>
+    <link href="http://michaelay.herokuapp.com/blog/2012/01/03/rails-force-ssl/"/>
+    <updated>2012-01-03T15:21:00+08:00</updated>
+    <id>http://michaelay.herokuapp.com/blog/2012/01/03/rails-force-ssl</id>
+    <content type="html"><![CDATA[<p>
+Staring rails 3, we shall avoid using ssl_requirement GEM, as the GEM does not work very well on heroku. 
+Sometimes the HTTPS page is redirected and the URL params are lost. 
+
+To fix this, force using HTTPS in config/routes.rb as follow: 
+
+``` config/routes.rb 
+  resources :accounts,
+            :constraints => { :protocol => 'https' } do 
+  # ... 
+  end 
+```
+
+You can also use scope. 
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>
